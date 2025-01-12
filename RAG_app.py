@@ -95,6 +95,8 @@ TMP_DIR = Path(__file__).resolve().parent.joinpath("data", "tmp")
 LOCAL_VECTOR_STORE_DIR = (
     Path(__file__).resolve().parent.joinpath("data", "vector_stores")
 )
+TMP_DIR.mkdir(parents=True, exist_ok=True)
+LOCAL_VECTOR_STORE_DIR.mkdir(parents=True, exist_ok=True)
 
 ####################################################################
 #            Create app interface with streamlit
@@ -713,7 +715,7 @@ def chain_RAG_blocks():
                         st.error(e)
 
             except Exception as error:
-                st.error(f"An error occurred: {error}")
+                st.error(f"An error occurred: {str(error)}")
 
 
 ####################################################################
@@ -943,7 +945,6 @@ def chatbot():
         st.subheader("Chat with your data")
     with col2:
         st.button("Clear Chat History", on_click=clear_chat_history)
-
     if "messages" not in st.session_state:
         st.session_state["messages"] = [
             {
