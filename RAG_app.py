@@ -281,6 +281,7 @@ def sidebar_and_documentChooser():
         root = tk.Tk()
         root.withdraw()
         root.wm_attributes("-topmost", 1)  # Make dialog appear on top of other windows
+        root.mainloop()
 
         st.session_state.selected_vectorstore_name = ""
 
@@ -350,7 +351,9 @@ def sidebar_and_documentChooser():
 
                             # 3. create memory and ConversationalRetrievalChain
                             (
-                                st.session_state.chain,
+                                st.session_state.chain 
+                                if "chain" not in st.session_state:
+                                    st.session_state.chain = None,
                                 st.session_state.memory,
                             ) = create_ConversationalRetrievalChain(
                                 retriever=st.session_state.retriever,
