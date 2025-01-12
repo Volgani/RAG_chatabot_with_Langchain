@@ -279,6 +279,7 @@ def sidebar_and_documentChooser():
         root = tk.Tk()
         root.withdraw()
         root.wm_attributes("-topmost", 1)  # Make dialog appear on top of other windows
+        root.mainloop()
 
         st.session_state.selected_vectorstore_name = ""
 
